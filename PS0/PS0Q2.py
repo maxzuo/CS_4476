@@ -67,7 +67,7 @@ if __name__ == "__main__":
     plt.axis("off")
     fig, axes = plt.subplots(3, 2, figsize=(6, 10))
     imgs = [(swapped, "swapImgPS0Q2.png (1)", None), (grayscale, "grayImgPS0Q2.png (2)", cm.gray), (negative, "negativeImgPS0Q2.png (3a)", cm.gray),
-            (mirrored, "mirrorImgPS0Q2.png (3b)", cm.gray), (averaged, "mirrorImgPS0Q2.png", cm.gray), (added, "addNoiseImgPS0Q2.png", cm.gray)]
+            (mirrored, "mirrorImgPS0Q2.png (3b)", cm.gray), (averaged, "avgImgPS0Q2.png (3c)", cm.gray), (added, "addNoiseImgPS0Q2.png (3d)s", cm.gray)]
 
     axes = np.array(axes).flatten().tolist()
 
@@ -78,5 +78,6 @@ if __name__ == "__main__":
         ax.axis("off")
 
     fig.savefig("all_results.png")
+    plt.show()
 
 
