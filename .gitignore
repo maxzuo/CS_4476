@@ -1,5 +1,8 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
+lecture_slides/
+**/__pycache__/
+*.png
 *.py[cod]
 *$py.class
 
