@@ -12,8 +12,7 @@ def a():
     fig = plt.figure()
 
     arr = np.array(A.reshape(-1))
-
-    fig = plt.figure()
+    
     fig.gca().plot(range(len(arr)), np.sort(arr)[::-1], label="magnitude")
 
     fig.gca().legend()
