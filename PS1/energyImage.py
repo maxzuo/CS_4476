@@ -9,8 +9,9 @@ def energy_image(im):
         im = rgb2gray(im)
     
     # WHICH ENERGY FUNCTION DO WE USE? The one on the slides or the one in the paper???
-    g = np.sum(np.abs(np.gradient(im)), axis=0)
-    print(g.shape)
+    # g = np.sum(np.abs(np.gradient(im)), axis=0)
+    
+    g = np.sqrt(np.sum(np.square(np.gradient(im)), axis=0))
 
     return g
 
