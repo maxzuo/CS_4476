@@ -19,9 +19,9 @@ def getHueHists(img, k):
 
     # quantized bins
     meanHues, labels = kmeans2(pixels.astype(np.float), k, minit='points', iter=10_000)
-    print(meanHues, np.bincount(labels))
+
     reorder = np.argsort(meanHues)
-    for i in range(len(labels)): labels[i] = reorder[labels[i]]
+    for i in range(len(labels)): labels[i] = np.argwhere(reorder == labels[i])
     meanHues = meanHues[reorder]
 
     histClustered = plt.figure()
