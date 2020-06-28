@@ -28,7 +28,9 @@ def test_qError(img):
 def test_hist(img):
 
     e, q = getHueHists.getHueHists(img, 5)
+    plt.show()
 
+    e, q = getHueHists.getHueHists(img, 50)
     plt.show()
 
 if __name__ == "__main__":
