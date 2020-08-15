@@ -33,41 +33,41 @@ def add(img, img2):
 
 if __name__ == "__main__":
     
-    image = Image.imread("inputPS0Q2.jpg")
+    image = Image.imread("q4-input.jpg")
 
-    # 1
+    # (a)
     swapped = swap_red_green(image)
-    plt.imsave("swapImgPS0Q2.png", swapped)
+    plt.imsave("q4-output-swapped.png", swapped)
 
-    # 2
+    # (b)
     grayscale = rgb2gray(image)
-    plt.imsave("grayImgPS0Q2.png", grayscale, cmap=cm.gray)
+    plt.imsave("q4-output-grayscale.png", grayscale, cmap=cm.gray)
 
-    # 3a
+    # (c)
     negative = negative(grayscale)
-    plt.imsave("negativeImgPS0Q2.png", negative, cmap=cm.gray)
+    plt.imsave("q4-output-negative.png", negative, cmap=cm.gray)
 
-    # 3b
+    # (d)
     mirrored = mirror_horizontally(grayscale)
-    plt.imsave("mirrorImgPS0Q2.png", mirrored, cmap=cm.gray)
+    plt.imsave("q4-output-mirrored.png", mirrored, cmap=cm.gray)
 
-    # 3c
+    # (e)
     averaged = average(grayscale, mirrored)
-    plt.imsave("avgImgPS0Q2.png", averaged, cmap=cm.gray)
+    plt.imsave("q4-output-average.png", averaged, cmap=cm.gray)
 
-    # 3d
+    # (f)
     N = np.random.randint(0, 255, grayscale.shape)
-    np.save("noise.npy", N)
+    np.save("q4-noise.npy", N)
 
     added = add(grayscale, N)
-    plt.imsave("addNoiseImgPS0Q2.png", added, cmap=cm.gray)
+    plt.imsave("q4-output-noise.png", added, cmap=cm.gray)
 
 
     # Final plot
     plt.axis("off")
     fig, axes = plt.subplots(3, 2, figsize=(6, 10))
-    imgs = [(swapped, "swapImgPS0Q2.png (1)", None), (grayscale, "grayImgPS0Q2.png (2)", cm.gray), (negative, "negativeImgPS0Q2.png (3a)", cm.gray),
-            (mirrored, "mirrorImgPS0Q2.png (3b)", cm.gray), (averaged, "avgImgPS0Q2.png (3c)", cm.gray), (added, "addNoiseImgPS0Q2.png (3d)s", cm.gray)]
+    imgs = [(swapped, "q4-output-swapped.png (a)", None), (grayscale, "q4-output-grayscale.png (b)", cm.gray), (negative, "q4-output-negative.png (c)", cm.gray),
+            (mirrored, "q4-output-mirrored.png (d)", cm.gray), (averaged, "q4-output-average.png (e)", cm.gray), (added, "q4-otuput-noise.png (f)", cm.gray)]
 
     axes = np.array(axes).flatten().tolist()
 

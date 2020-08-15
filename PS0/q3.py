@@ -1,8 +1,7 @@
 import numpy as np
 from matplotlib import pyplot as plt
-from matplotlib.colors import *
-import sys
 from PIL import Image
+import sys
 
 A = None
 
@@ -81,19 +80,19 @@ def e():
 
     print("(e)")
 
-    cmap = ListedColormap([[0, 0, 0], [1, 0, 0]])
-
-    Z = (A > np.mean(A)).astype(np.uint8) 
+    Z = np.zeros((*A.shape, 3)).astype(np.uint8) 
+    
+    Z[:,:,0] = (A > np.mean(A))
     np.save("q3-output-Z.npy", Z)
 
     fig = plt.figure()
 
-    fig.gca().imshow(Z, interpolation="nearest", cmap=cmap)
+    fig.gca().imshow(Z * 255, interpolation="nearest")
     fig.gca().set_title("3e) Red if A > t")
 
     fig.savefig("3e.png")
 
-    img = Image.fromarray(Z)
+    img = Image.fromarray(Z * 255) # scale properly
     img.save("q3-output-z.png")
     
 
