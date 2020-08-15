@@ -2,6 +2,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib.colors import *
 import sys
+from PIL import Image
 
 A = None
 
@@ -13,14 +14,17 @@ def a():
 
     arr = np.array(A.reshape(-1))
     
-    fig.gca().plot(range(len(arr)), np.sort(arr)[::-1], label="magnitude")
+    arr_sorted = np.sort(arr)[::-1]
+    np.save("q3-output-sorted.png", arr_sorted)
+
+    fig.gca().plot(range(len(arr)), arr_sorted, label="magnitude")
 
     fig.gca().legend()
 
-    fig.gca().set_title("4a) Magnitude of values of A")
+    fig.gca().set_title("3a) Magnitude of values of A")
     fig.gca().set_ylabel("Magnitude")
 
-    fig.savefig("4a.png")
+    fig.savefig("3a.png")
     #plt.show()
 
 def b():
@@ -38,30 +42,30 @@ def b():
 
     fig.gca().set_ylabel("Number of occurrences in A")
 
-    fig.gca().set_title("4b) Histogram of the Magnitudes in A")
+    fig.gca().set_title("3b) Histogram of the Magnitudes in A")
 
-    fig.savefig("4b.png")
+    fig.savefig("3b.png")
     #plt.show()
 
 def c():
     print("(c)")
 
     X = np.array(A[50:100,0:50])
-    np.save("outputXPS0Q1.npy", X)
+    np.save("q3-output-x.npy", X)
 
     fig = plt.figure()
 
     fig.gca().imshow(X, interpolation="nearest")
 
-    fig.gca().set_title("4c) Bottom Left Quadrant of A")
+    fig.gca().set_title("3c) Bottom Left Quadrant of A")
 
-    fig.savefig("4c.png")
+    fig.savefig("3c.png")
 
 def d():
     print("(d)")
 
     Y = A - np.mean(A)
-    np.save("outputYPS0Q1.npy", Y)
+    np.save("q3-output-y.npy", Y)
 
     print("Note: Since A is sampled from random normal distribution, and as seen from part b), the mean is very close to 0, and so there is very little difference between A and Y")
 
@@ -69,9 +73,9 @@ def d():
     fig = plt.figure()
 
     fig.gca().imshow(Y, interpolation="nearest")
-    fig.gca().set_title("4d) A shifted by mean")
+    fig.gca().set_title("3d) A shifted by mean")
 
-    fig.savefig("4d.png")
+    fig.savefig("3d.png")
 
 def e():
 
@@ -79,19 +83,23 @@ def e():
 
     cmap = ListedColormap([[0, 0, 0], [1, 0, 0]])
 
-    Z = A > np.mean(A).astype(np.uint8) 
-    np.save("outputZPS0Q1.npy", Z)
+    Z = (A > np.mean(A)).astype(np.uint8) 
+    np.save("q3-output-Z.npy", Z)
 
     fig = plt.figure()
 
     fig.gca().imshow(Z, interpolation="nearest", cmap=cmap)
-    fig.gca().set_title("4e) Red if A > t")
+    fig.gca().set_title("3e) Red if A > t")
 
-    fig.savefig("outputZPS0Q1.png")
+    fig.savefig("3e.png")
+
+    img = Image.fromarray(Z)
+    img.save("q3-output-z.png")
+    
 
 if __name__ == "__main__":
     # load A from source
-    A = np.load("inputAPS0Q1.npy")
+    A = np.load("q3-input.npy")
     
     if A is None or A.shape != (100, 100):
         print("A is not loaded correctly")
