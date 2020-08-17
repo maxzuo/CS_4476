@@ -33,7 +33,7 @@ def add(img, img2):
 
 if __name__ == "__main__":
     
-    image = Image.imread("q4-input.jpg")
+    image = Image.imread("q4-input.png")
 
     # (a)
     swapped = swap_red_green(image)

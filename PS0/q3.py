@@ -1,6 +1,6 @@
 import numpy as np
 from matplotlib import pyplot as plt
-from PIL import Image
+from matplotlib import image as Image
 import sys
 
 A = None
@@ -80,20 +80,19 @@ def e():
 
     print("(e)")
 
-    Z = np.zeros((*A.shape, 3)).astype(np.uint8) 
+    Z = np.zeros((*A.shape, 3))
     
     Z[:,:,0] = (A > np.mean(A))
     np.save("q3-output-Z.npy", Z)
 
     fig = plt.figure()
 
-    fig.gca().imshow(Z * 255, interpolation="nearest")
+    fig.gca().imshow(Z, interpolation="nearest")
     fig.gca().set_title("3e) Red if A > t")
 
     fig.savefig("3e.png")
 
-    img = Image.fromarray(Z * 255) # scale properly
-    img.save("q3-output-z.png")
+    plt.imsave("q3-output-z.png", Z)
     
 
 if __name__ == "__main__":
