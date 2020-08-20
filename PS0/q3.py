@@ -11,17 +11,20 @@ def a():
 
     fig = plt.figure()
 
-    arr = np.array(A.reshape(-1))
+    arr = np.array(A.reshape((-1,1)))
     
-    arr_sorted = np.sort(arr)[::-1]
-    np.save("q3-output-sorted.png", arr_sorted)
+    arr_sorted = np.sort(arr, axis=0)[::-1,:]
 
-    fig.gca().plot(range(len(arr)), arr_sorted, label="magnitude")
-
-    fig.gca().legend()
+    indices = np.arange(arr.shape[0], step=999)
+    # print(indices, arr.shape)
 
     fig.gca().set_title("3a) Magnitude of values of A")
-    fig.gca().set_ylabel("Magnitude")
+    fig.gca().set_xlabel("Magnitude")
+    fig.gca().axes.yaxis.set_visible(False)
+    fig.gca().axes.set_xticks(indices)
+    fig.gca().axes.set_xticklabels(list(map(lambda s: "%.2f" % s, arr_sorted[indices,0])))
+
+    fig.gca().imshow(np.tile(arr_sorted, 3000).T, cmap="gray")
 
     fig.savefig("3a.png")
     #plt.show()
