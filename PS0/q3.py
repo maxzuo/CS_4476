@@ -1,6 +1,6 @@
 import numpy as np
 from matplotlib import pyplot as plt
-from matplotlib import image as Image
+import imageio as Image
 import sys
 
 A = None
@@ -25,6 +25,7 @@ def a():
     fig.gca().axes.set_xticklabels(list(map(lambda s: "%.2f" % s, arr_sorted[indices,0])))
 
     fig.gca().imshow(np.tile(arr_sorted, 3000).T, cmap="gray")
+    # fig.colorbar(arr_sorted, cmap='gray')
 
     fig.savefig("3a.png")
     #plt.show()
@@ -83,9 +84,9 @@ def e():
 
     print("(e)")
 
-    Z = np.zeros((*A.shape, 3))
+    Z = np.zeros((*A.shape, 3), dtype=np.uint8)
     
-    Z[:,:,0] = (A > np.mean(A))
+    Z[:,:,0] = (A > np.mean(A)) * 255
     np.save("q3-output-Z.npy", Z)
 
     fig = plt.figure()
@@ -95,7 +96,7 @@ def e():
 
     fig.savefig("3e.png")
 
-    plt.imsave("q3-output-z.png", Z)
+    Image.imsave("q3-output-z.png", Z)
     
 
 if __name__ == "__main__":
