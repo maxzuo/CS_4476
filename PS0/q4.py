@@ -37,30 +37,30 @@ if __name__ == "__main__":
 
     # (a)
     swapped = swap_red_green(image)
-    plt.imsave("q4-output-swapped.png", swapped)
+    Image.imsave("q4-output-swapped.png", swapped)
 
     # (b)
     grayscale = rgb2gray(image)
-    plt.imsave("q4-output-grayscale.png", grayscale, cmap=cm.gray)
+    Image.imsave("q4-output-grayscale.png", grayscale, cmap=cm.gray)
 
     # (c)
     negative = negative(grayscale)
-    plt.imsave("q4-output-negative.png", negative, cmap=cm.gray)
+    Image.imsave("q4-output-negative.png", negative, cmap=cm.gray)
 
     # (d)
     mirrored = mirror_horizontally(grayscale)
-    plt.imsave("q4-output-mirrored.png", mirrored, cmap=cm.gray)
+    Image.imsave("q4-output-mirrored.png", mirrored, cmap=cm.gray)
 
     # (e)
     averaged = average(grayscale, mirrored)
-    plt.imsave("q4-output-average.png", averaged, cmap=cm.gray)
+    Image.imsave("q4-output-average.png", averaged, cmap=cm.gray)
 
     # (f)
     N = np.random.randint(0, 255, grayscale.shape)
     np.save("q4-noise.npy", N)
 
     added = add(grayscale, N)
-    plt.imsave("q4-output-noise.png", added, cmap=cm.gray)
+    Image.imsave("q4-output-noise.png", added, cmap=cm.gray)
 
 
     # Final plot
