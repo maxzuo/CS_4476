@@ -5,6 +5,8 @@ def random_dice(N): return (6 * np.random.rand(N) + 1).astype(int) # results sto
 
 def reshape_vector(y=np.array([1, 2, 3, 4, 5, 6])): return y.reshape((-1, 2))
 
-def max_value(z=np.array([[1,2],[3,4],[5,6]])): return np.argwhere(z == np.max(z))[0]
+def max_value(z=np.array([[1,2],[3,4],[5,6]])):
+    r, c = np.where(z == np.max(z))
+    return r[0], c[0]
 
 def count_ones(v=np.array([1, 8, 8, 2, 1, 3, 9, 8])): return np.sum(v == 1)
